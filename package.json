@@ -2,6 +2,7 @@
   "name": "vonocaba",
   "version": "0.0.0",
   "dependencies": {
+    "coffee-script": "^1.7.1",
     "express": "^4.2.0",
     "gzippo": "^0.2.0"
   },
