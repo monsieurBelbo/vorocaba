@@ -25,12 +25,12 @@ angular.module('vonocabaApp')
 
                 queue()
                     .defer(d3.json, "/data/caba.json")
-                    .defer(d3.csv, "/data/contenedores.csv")
+                    .defer(d3.csv, "/data/comisarias.csv")
                     .await(ready);
 
                 function ready(error, caba, contenedores) {
                     var subunits = topojson.feature(caba, caba.objects.barrios);
-                    console.log(caba);        //TODO(gb): Remove trace!!!
+                    var coordinates = contenedores.map(function(d) { return [+d.longitude, +d.latitude]; });
 
                     svg.append("path")
                         .datum(topojson.mesh(caba, caba.objects.barrios))
@@ -38,12 +38,12 @@ angular.module('vonocabaApp')
                         .attr("d", path)
 
                     svg.append("path")
-                        .datum({type: "MultiPoint", coordinates: contenedores})
+                        .datum({type: "MultiPoint", coordinates: coordinates})
                         .attr("class", "points")
                         .attr("d", path)
 
                     svg.append("path")
-                        .datum(d3.geom.voronoi(contenedores.map(projection)))
+                        .datum(d3.geom.voronoi(coordinates.map(projection)))
                         .attr("class", "voronoi")
                         .attr("d", function(d) { return "M" + d.map(function(d) { return d.join("L"); }).join("ZM") + "Z"; });
 

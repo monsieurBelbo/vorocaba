@@ -17,8 +17,8 @@ path {
 }
 
 .subunit {
-    fill: #eee;
-    stroke: #333;
+    fill: none;
+    stroke: #999;
     stroke-size: 1px;
 }
 
