@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('vonocabaApp')
-    .directive('cabaMap', function () {
+    .directive('cabaMap', function ($http, $q) {
         return {
             template: '<div></div>',
             restrict: 'E',
@@ -23,14 +23,15 @@ angular.module('vonocabaApp')
                 var path = d3.geo.path()
                     .projection(projection);
 
-                queue()
-                    .defer(d3.json, "/data/caba.json")
-                    .defer(d3.csv, "/data/comisarias.csv")
-                    .await(ready);
+                $q.all([
+                    $http.get("/data/caba.json"),
+                    $http.get("/data/comisarias.csv")
+                ]).then(ready)
 
-                function ready(error, caba, contenedores) {
-                    var subunits = topojson.feature(caba, caba.objects.barrios);
-                    var coordinates = contenedores.map(function(d) { return [+d.longitude, +d.latitude]; });
+                function ready(response) {
+                    var caba = response[0].data,
+                        contenedores = d3.csv.parse(response[1].data),
+                        coordinates = contenedores.map(function(d) { return [+d.longitude, +d.latitude]; });
 
                     svg.append("path")
                         .datum(topojson.mesh(caba, caba.objects.barrios))
@@ -48,8 +49,6 @@ angular.module('vonocabaApp')
                         .attr("d", function(d) { return "M" + d.map(function(d) { return d.join("L"); }).join("ZM") + "Z"; });
 
                 }
-
-
             }
         };
     });
