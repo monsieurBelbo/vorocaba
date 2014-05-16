@@ -2,16 +2,29 @@ svg{
     fill: white;
 }
 
+#map{
+    margin:0px;
+    padding:0px;
+    position:relative;
+}
+
+path {
+    stroke-linejoin: round;
+}
+
+.points {
+    fill: black;
+}
+
 .subunit {
     fill: #eee;
     stroke: #333;
     stroke-size: 1px;
 }
 
-#map{
-    width:550px;
-    height:600px;
-    margin:0px;
-    padding:0px;
-    position:relative;
+.voronoi {
+    fill: none;
+    stroke: brown;
+    stroke-width: .5px;
 }
+
