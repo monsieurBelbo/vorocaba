@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('vonocabaApp')
+angular.module('vorocabaApp')
     .directive('cabaMap', function ($http, $q) {
         return {
             template: '<div></div>',

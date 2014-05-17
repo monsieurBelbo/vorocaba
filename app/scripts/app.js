@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-  .module('vonocabaApp', [
+  .module('vorocabaApp', [
     'ngCookies',
     'ngResource',
     'ngSanitize',

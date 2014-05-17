@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('vonocabaApp')
+angular.module('vorocabaApp')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
