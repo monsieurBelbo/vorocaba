@@ -8,7 +8,9 @@ barrios.shp: barrios.zip
 barrios.json: barrios.shp
 	ogr2ogr -t_srs EPSG:4326 -f GeoJSON barrios.json barrios.shp
 
-caba.json: barrios.json
-	topojson -p -o caba.json barrios.json
+limites.json:
+	curl -o limites.json 'https://bahackaton.cartodb.com/api/v2/sql?filename=limites_caba&q=SELECT+*+FROM+limites_caba&format=geojson'
+
+caba.json: barrios.json limites.json
+	topojson -o caba.json barrios.json limites.json
 	mv caba.json app/data
-	rm barrios.*

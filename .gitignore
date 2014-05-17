@@ -7,3 +7,5 @@ app/bower_components
 *.ipr
 *.iws
 .DS_Store
+barrios.*
+limites.*

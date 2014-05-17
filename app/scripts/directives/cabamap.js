@@ -28,8 +28,6 @@ angular.module('vonocabaApp')
                     .attr("width", width)
                     .attr("height", height);
 
-                var voronoiLayer = svg.append("g");
-
                 $q.all([
                     $http.get("/data/caba.json"),
                     $http.get("/data/comisarias.csv")
@@ -40,6 +38,22 @@ angular.module('vonocabaApp')
                         contenedores = d3.csv.parse(response[1].data),
                         coordinates = contenedores.map(function(d) { return [+d.longitude, +d.latitude]; });
 
+                    var defs = svg.append("defs");
+
+                    defs.append("path")
+                        .datum(topojson.feature(caba, caba.objects.limites))
+                        .attr("id", "limits")
+                        .attr("d", path);
+
+                    defs.append("clipPath")
+                        .attr("id", "clip")
+                        .append("use")
+                        .attr("xlink:href", "#limits");
+
+                    svg.append("use")
+                        .attr("xlink:href", "#limits")
+                        .attr("class", "limits");
+
                     svg.append("path")
                         .datum(topojson.mesh(caba, caba.objects.barrios))
                         .attr("class", "subunit")
@@ -49,6 +63,10 @@ angular.module('vonocabaApp')
                         .datum({type: "MultiPoint", coordinates: coordinates})
                         .attr("class", "points")
                         .attr("d", path)
+
+                    var voronoiLayer = svg.append("g")
+                        .attr("class", "land")
+                        .attr("clip-path", "url(#clip)")
 
                     voronoiLayer.selectAll(".voronoi")
                         .data(voronoi(coordinates.map(projection)))
