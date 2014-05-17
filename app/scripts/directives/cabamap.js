@@ -12,16 +12,23 @@ angular.module('vonocabaApp')
                 var width = attrs.width,
                     height = attrs.height;
 
-                var svg = d3.select("#map").append("svg")
-                    .attr("width", width)
-                    .attr("height", height);
+                var fill = d3.scale.category10();
 
                 var projection = d3.geo.mercator()
                     .scale(190000)
                     .center([-58.40000,-34.58900])
 
                 var path = d3.geo.path()
-                    .projection(projection);
+                    .projection(projection)
+                    .pointRadius(3);
+
+                var voronoi = d3.geom.voronoi();
+
+                var svg = d3.select("#map").append("svg")
+                    .attr("width", width)
+                    .attr("height", height);
+
+                var voronoiLayer = svg.append("g");
 
                 $q.all([
                     $http.get("/data/caba.json"),
@@ -43,11 +50,16 @@ angular.module('vonocabaApp')
                         .attr("class", "points")
                         .attr("d", path)
 
-                    svg.append("path")
-                        .datum(d3.geom.voronoi(coordinates.map(projection)))
+                    voronoiLayer.selectAll(".voronoi")
+                        .data(voronoi(coordinates.map(projection)))
+                        .enter().append("path")
                         .attr("class", "voronoi")
-                        .attr("d", function(d) { return "M" + d.map(function(d) { return d.join("L"); }).join("ZM") + "Z"; });
+                        .style("fill", function(d,i) { return fill(i) })
+                        .attr("d", polygon)
+                }
 
+                function polygon(d) {
+                    return "M" + d.join("L") + "Z";
                 }
             }
         };
