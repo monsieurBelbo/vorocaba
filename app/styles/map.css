@@ -24,7 +24,8 @@ path {
 
 .voronoi {
     fill: none;
-    stroke: brown;
+    fill-opacity: 0.5;
+    stroke: white;
     stroke-width: .5px;
 }
 
