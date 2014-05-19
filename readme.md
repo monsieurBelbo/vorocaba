@@ -13,7 +13,7 @@ bower install
 grunt serve
 ```
 
-Para regenerar el topojson de barrios y límites de la ciudad:
+Para regenerar el TopoJSON de barrios y límites de la ciudad:
 
 ```
 make caba.json
@@ -30,7 +30,7 @@ make caba.json
 * [GDAL](http://www.gdal.org/)
 * [TopoJSON](http://www.gdal.org/)
 
-Para instalar GDAL y TopoJSON (con brew y npm):
+Para instalar GDAL y TopoJSON (con `brew` y `npm`):
 
 ```
 brew update
