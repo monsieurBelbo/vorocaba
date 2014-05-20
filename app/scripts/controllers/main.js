@@ -42,6 +42,14 @@ angular.module('vorocabaApp')
                 lat: "latitude",
                 long: "longitud",
                 voronoi: true
+            },
+            {
+                name: "Hospitales",
+                url: "/data/hospitales.csv",
+                parse: d3.csv.parse,
+                lat: "latitude",
+                long: "longitude",
+                voronoi: true
             }
         ]
 
