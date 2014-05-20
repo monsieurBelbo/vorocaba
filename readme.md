@@ -3,7 +3,7 @@ Voro CABA
 
 Diagrama de Voronoi sobre D3.js optimizado para los límites geográficos de la Ciudad Autónoma de Buenos Aires.
 
-![Imgur](http://i.imgur.com/JFzLUoR.png)
+![Imgur](http://i.imgur.com/2h737B2.png)
 
 Para traer todas dependencias y correr localmente, desde el root:
 
