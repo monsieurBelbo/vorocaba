@@ -14,7 +14,7 @@ angular.module('vorocabaApp')
 
                 var fill = d3.scale.linear()
                     .domain([0, 10000])
-                    .range(["#fff", "#f00"]);
+                    .range(["#f00","#fff"]);
 
                 var projection = d3.geo.mercator()
                     .scale(190000)
@@ -64,10 +64,6 @@ angular.module('vorocabaApp')
                         .attr("d", path);
                 }
 
-                function polygon(d) {
-                    return "M" + d.join("L") + "Z";
-                }
-
                 function drawVoronoi(points) {
                     var coordinates = points.map(function(d) { return [+d[scope.dataset.long], +d[scope.dataset.lat]]; });
 
@@ -91,6 +87,10 @@ angular.module('vorocabaApp')
                             .style("fill", function(d) { return fill(Math.abs(d3.geom.polygon(d).area())); })
                             .attr("d", polygon);
                     }
+                }
+
+                function polygon(d) {
+                    return "M" + d.join("L") + "Z";
                 }
 
                 // Extracts a single LineString from the given feature, projected (and resampled) using the given projection.

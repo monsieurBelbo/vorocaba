@@ -26,6 +26,14 @@ angular.module('vorocabaApp')
                 lat: "lat",
                 long: "long",
                 voronoi: false
+            },
+            {
+                name: "Bicicleterías",
+                url: "/data/bicicleterias.csv",
+                parse: d3.csv.parse,
+                lat: "latitude",
+                long: "longitude",
+                voronoi: true
             }
         ]
 
