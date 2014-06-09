@@ -43,7 +43,7 @@ angular.module('vorocabaApp')
                 }
 
                 $q.all([
-                        $http.get("/data/caba.json")
+                        $http.get("data/caba.json")
                     ]).then(function(response) {
                         ready(response[0].data)
                     })
