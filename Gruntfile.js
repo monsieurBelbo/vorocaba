@@ -348,6 +348,7 @@ module.exports = function (grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-gh-pages');
 
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
