@@ -5,7 +5,7 @@ angular.module('vorocabaApp')
         $scope.datasets = [
             {
                 name: "Comisarias",
-                url: "/data/comisarias.csv",
+                url: "../../data/comisarias.csv",
                 parse: d3.csv.parse,
                 lat: "latitude",
                 long: "longitude",
@@ -13,7 +13,7 @@ angular.module('vorocabaApp')
             },
             {
                 name: "Campanas",
-                url: "/data/campanas.csv",
+                url: "../../data/campanas.csv",
                 parse: d3.csv.parse,
                 lat: "lat",
                 long: "long",
@@ -21,7 +21,7 @@ angular.module('vorocabaApp')
             },
             {
                 name: "Contenedores",
-                url: "/data/contenedores.csv",
+                url: "../../data/contenedores.csv",
                 parse: d3.csv.parse,
                 lat: "lat",
                 long: "long",
@@ -29,7 +29,7 @@ angular.module('vorocabaApp')
             },
             {
                 name: "Bicicleterías",
-                url: "/data/bicicleterias.csv",
+                url: "../../data/bicicleterias.csv",
                 parse: d3.csv.parse,
                 lat: "latitude",
                 long: "longitude",
@@ -37,7 +37,7 @@ angular.module('vorocabaApp')
             },
             {
                 name: "Bomberos",
-                url: "/data/bomberos.csv",
+                url: "../../data/bomberos.csv",
                 parse: d3.csv.parse,
                 lat: "latitude",
                 long: "longitud",
@@ -45,7 +45,7 @@ angular.module('vorocabaApp')
             },
             {
                 name: "Hospitales",
-                url: "/data/hospitales.csv",
+                url: "../../data/hospitales.csv",
                 parse: d3.csv.parse,
                 lat: "latitude",
                 long: "longitude",
